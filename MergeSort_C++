@@ -1,0 +1,73 @@
+
+#include <iostream>
+using namespace std;
+
+int merge(int arr[],int l,int m,int r){
+    int a,b,x=0,y=0,z=l;
+    a= m-l+1; // declare 1st half of the func
+    b=r-m;  // declare second half
+    int temp[a]; // two temp func to compare 
+    int temp2[b];
+    //assigning values to temp functions func 1 func 2
+    for (int i=0;i<a;i++){
+        temp[i]= arr[i+l];
+    }
+    for (int i=0;i<b;i++){
+        temp2[i]= arr[i+m+1];
+    }
+    //comparing two functions and set final value in array arr
+    while(x<a && y<b){
+        // if func 1 value less than func 2
+        if(temp[x]<temp2[y]){
+            arr[z] = temp[x];
+            z++;
+            x++;
+        }else{  // if func 2 value less than func 1
+            arr[z] = temp2[y];
+            z++;
+            y++;
+        }
+    }
+    while(x<a){  // if func 2 traversing fully done but func 1 incompleted
+        arr[z] = temp[x];
+            z++;
+            x++;
+    }
+    while(y<b){  // if func 1 traversing fully done but func 2 incompleted
+         arr[z] = temp2[y];
+            z++;
+            y++;
+    }
+   return 1;
+}
+
+int mergeSort (int arr[], int l, int r){
+    // recursion using l,r,m
+    if(l<r){
+        int m = (l+r)/2;
+        mergeSort(arr,l,m);
+        mergeSort(arr,m+1,r);
+        //combining two func
+        merge(arr,l,m,r);
+    }
+    return 1;
+}
+
+int main() {
+   int n;
+   //input
+   cout<<"Enter Size of Arrays: ";
+   cin>>n;
+   int arr[n];
+   for(int i=0;i<n;i++){
+       cin>>arr[i];
+   }
+   //mergesort func
+   mergeSort(arr,0, n-1);
+   //output
+   for(int i=0;i<n;i++){
+       cout<<arr[i]<<" ";
+   }
+   
+    return 0;
+}
