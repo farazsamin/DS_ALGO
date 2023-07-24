@@ -1,0 +1,37 @@
+// 4
+// 5 1 8 3
+
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++) cin>>arr[i];
+    
+    
+    for(int i=1;i<n;i++){
+        //setting flag value to compare with before elements
+        int flag = arr[i];
+        // cout<<i<<" "<<"flag "<<flag<<endl;
+        //Place identify before flag
+        int a= i-1;
+        // cout<<"a "<<a<<endl;
+        //comparing flag with before value and swap values
+        while(arr[a]>flag && a>=0){
+            // cout<<"arr[a] "<<arr[a]<<endl;
+            arr[a+1]= arr[a];
+            //   cout<<"arr[a+1] "<<arr[a+1]<<endl;
+            a--;
+        }
+        arr[a+1]= flag;
+        // cout<<"arr[a+1] "<<arr[a+1]<<endl;
+    }
+    
+    
+    
+    //output
+    for(int i=0;i<n;i++)
+       cout<<arr[i]<<" ";
+    
+}
