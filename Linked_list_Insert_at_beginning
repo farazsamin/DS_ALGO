@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+
+// Linked List. Inserting node at the beginning
+
+struct node{
+    int data;
+    node* next; // address
+};
+node* head; // pointer to head node
+
+
+// Function to insert at the beginning 
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = head;
+    head = temp;
+}
+
+// Print the list 
+void print(){
+    node * temp = head;
+    cout<<"ALL Numbers are : "<<endl;
+    while(temp != NULL){
+        cout<<temp-> data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+int main(){
+
+   head = NULL;
+   cout<<"How many Numbers ?"<<endl;
+   int n,x;
+   cin>>n;
+   cout<<"Enter the Numbers : "<<endl;
+   for(int i=0;i<n;i++){
+   cin>>x;
+   insert(x);
+   print();
+   }
+
+}
+
+/*
+4
+4 6 8 2
+*/
