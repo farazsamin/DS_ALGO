@@ -1,0 +1,60 @@
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+node * head;
+
+//insert at the front of the list
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = head;
+    head = temp;
+}
+
+//delete at nth position
+void Delete(int n){
+    node * temp1 = head;
+    if(n==1){
+        head = temp1->next;
+        free(temp1);
+    }
+    else{
+        for(int i=0;i<n-2;i++){
+            temp1= temp1->next;
+        }
+        node * temp2 = temp1->next;  // Pointing to nth node
+        temp1->next = temp2->next;  // linking n-1 to n+1 th node
+        free(temp2);
+    }
+}
+void print(){
+    node * temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+int main(){
+  head = NULL;
+  insert(2);
+  insert(3);
+  insert(2);
+  insert(1);
+  print();
+  int n;
+  cout<<"Enter position of delete : "<<endl;
+  cin>>n;
+  Delete(n);
+  print();
+}
+
+/*
+4
+4 6 8 2
+*/
