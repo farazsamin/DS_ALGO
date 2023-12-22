@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+//Stack implementation using Stack
+
+struct node{
+    int data;
+    node* next;
+};
+node * top = NULL;
+
+//Push at the beginning of Linked list
+void Push(int x){
+        node* temp = new node;
+        temp->data = x;
+        temp->next = top;
+        top= temp;
+}
+//Pop from the beginning 
+void Pop(){
+        if(top==NULL) return;
+        node* temp;
+        temp= top;
+        top= top->next;
+        free(temp);
+}
+void Print(){
+        node * temp;
+        temp= top;
+        while(temp!=NULL){
+            cout<<temp->data<<" ";
+            temp= temp->next;
+        }
+        cout<<endl;
+}
+int main(){
+        Push(2); Print();
+        Push(4); Print();
+        Push(8); Print();
+        Pop(); Print();
+
+
+}
+
