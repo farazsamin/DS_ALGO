@@ -145,3 +145,323 @@ int main(){
   print();
 }
 
+
+//******************************************************************************************************************************************************
+
+//Delete Fron nth position 
+
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+node * head;
+
+//insert at the front of the list
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = head;
+    head = temp;
+}
+
+//delete at nth position
+void Delete(int n){
+    node * temp1 = head;
+    if(n==1){
+        head = temp1->next;
+        free(temp1);
+    }
+    else{
+        for(int i=0;i<n-2;i++){
+            temp1= temp1->next;
+        }
+        node * temp2 = temp1->next;  // Pointing to nth node
+        temp1->next = temp2->next;  // linking n-1 to n+1 th node
+        free(temp2);
+    }
+}
+void print(){
+    node * temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+int main(){
+  head = NULL;
+  insert(2);
+  insert(3);
+  insert(2);
+  insert(1);
+  print();
+  int n;
+  cout<<"Enter the position of delete: "<<endl;
+  cin>>n;
+  Delete(n);
+  print();
+}
+
+//******************************************************************************************************************************************************
+// Print using recursion 
+
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+
+
+//insert at the last of the list using the pointer
+node* Insert(node* head,int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = NULL;
+    if(head==NULL) head = temp;
+    else {
+      node* temp2 = head;
+      while(temp2->next != NULL){
+        temp2 = temp2->next;
+      }
+      temp2->next = temp;
+    }
+    return head;
+}
+
+//Recursive Print Function
+void Print(node* p){
+    if(p==NULL) return;
+    cout<<p->data<<" ";
+    Print(p->next);
+}
+
+int main(){
+  node * head= NULL;
+  head = Insert(head,2);
+  head = Insert(head,3);
+  head = Insert(head,5);
+  head = Insert(head,7);
+  Print(head);
+}
+
+//******************************************************************************************************************************************************
+
+//Reverse using iterative 
+
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+node * head;
+
+//insert at the front of the list
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = head;
+    head = temp;
+}
+
+// Reverse LinkedList
+void Reverse(){
+    node *current,*prev,*next;
+    current= head;
+    prev= NULL;
+    while(current !=NULL){
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    head = prev;
+}
+
+void print(){
+    node * temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+int main(){
+  head = NULL;
+  insert(2);
+  insert(3);
+  insert(4);
+  insert(1);
+  print();
+  Reverse();
+  print();
+}
+
+//******************************************************************************************************************************************************
+
+//Reverse Using Recursion 
+
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+
+
+//insert at the last of the list using the pointer
+node* Insert(node* head,int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = NULL;
+    if(head==NULL) head = temp;
+    else {
+      node* temp2 = head;
+      while(temp2->next != NULL){
+        temp2 = temp2->next;
+      }
+      temp2->next = temp;
+    }
+    return head;
+}
+
+//Recursive Reverse  Print Function
+void ReversePrint(node* p){
+    if(p==NULL) return;
+    ReversePrint(p->next);  // Just 2 Line InterChanges
+    cout<<p->data<<" "; // Just 2 Line Interchange
+
+}
+
+int main(){
+  node * head= NULL;
+  head = Insert(head,2);
+  head = Insert(head,3);
+  head = Insert(head,5);
+  head = Insert(head,7);
+  ReversePrint(head);
+}
+
+//******************************************************************************************************************************************************
+//Reverse Using Stack 
+
+#include<iostream>
+#include<stack>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+
+
+//insert at the last of the list using the pointer
+node* Insert(node* head,int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = NULL;
+    if(head==NULL) head = temp;
+    else {
+      node* temp2 = head;
+      while(temp2->next != NULL){
+        temp2 = temp2->next;
+      }
+      temp2->next = temp;
+    }
+    return head;
+}
+
+//Reverse Function using Stack
+void Reverse(node* head){
+    if(head==NULL) return;
+    stack<node*>S;
+    node* temp= head;
+    while(temp!=NULL){
+        S.push(temp);
+        temp= temp->next;
+    }
+    temp= S.top();
+    head= temp;
+    S.pop();
+    while(!S.empty()){
+        temp->next= S.top();
+        S.pop();
+        temp= temp->next;
+    }
+    temp->next=NULL;
+
+    //Print
+    node* temp2= head;
+    while(temp2!=NULL){
+        cout<<temp2->data<<" ";
+        temp2= temp2->next;
+    }
+}
+
+
+
+int main(){
+  node * head= NULL;
+  head = Insert(head,10);
+  head = Insert(head,3);
+  head = Insert(head,5);
+  head = Insert(head,0);
+  Reverse(head);
+}
+
+//******************************************************************************************************************************************************
+
+
+
+
+
+
+
+//******************************************************************************************************************************************************
+
+
+
+
+
+
+
+//******************************************************************************************************************************************************
+
+
+
+
+
+
+
+//******************************************************************************************************************************************************
+
+
+
+
+//******************************************************************************************************************************************************
+
+
+
+
+
+//******************************************************************************************************************************************************
+
+
+
+
+
+
+//******************************************************************************************************************************************************
