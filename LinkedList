@@ -1,0 +1,147 @@
+
+//***********************************************************************************************************************************************************************
+
+//Insert At the Beginning 
+
+#include<iostream>
+using namespace std;
+
+// Linked List. Inserting node at the beginning
+
+struct node{
+    int data;
+    node* next; // address
+};
+node* head; // pointer to head node
+
+
+// Function to insert at the beginning 
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = head;
+    head = temp;
+}
+
+// Print the list 
+void print(){
+    node * temp = head;
+    cout<<"ALL Numbers are : "<<endl;
+    while(temp != NULL){
+        cout<<temp-> data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+int main(){
+
+   head = NULL;
+   cout<<"How many Numbers ?"<<endl;
+   int n,x;
+   cin>>n;
+   cout<<"Enter the Numbers : "<<endl;
+   for(int i=0;i<n;i++){
+   cin>>x;
+   insert(x);
+   print();
+   }
+
+}
+
+
+//**********************************************************************************************************************************************************************
+
+// Insert At the Last 
+
+#include<iostream>
+using namespace std;
+
+struct node {
+    int data;
+    node * next;
+};
+node * head;
+
+//insert at the last of the list
+void insert(int x){
+    node* temp = new node;
+    temp-> data = x;
+    temp-> next = NULL;
+    if(head==NULL) head = temp;
+    else {
+      node* temp2 = head;
+      while(temp2->next != NULL){
+        temp2 = temp2->next;
+      }
+      temp2->next = temp;
+    }
+}
+
+void print(){
+    node * temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+    cout<<endl;
+}
+
+int main(){
+  head = NULL;
+  insert(2);
+  insert(3);
+  insert(4);
+  insert(1);
+  print();
+}
+
+
+//********************************************************************************************************************************************************************
+
+//Inserting at nth node 
+
+#include<iostream>
+using namespace std;
+
+
+struct node {
+    int data;
+    node * next;
+};
+node * head;
+
+// Inserting data at the nth position
+void insert(int x,int n){
+    node * temp1 = new node;
+    temp1-> data = x;
+    temp1 -> next = NULL;
+    if(n==1){
+        temp1->next = head;
+        head= temp1;
+        return;
+    }
+    node * temp2 = head;
+    for(int i=0;i<n-2;i++){
+        temp2 = temp2 ->next;
+    }
+    temp1-> next= temp2->next;
+    temp2->next = temp1;
+}
+void print(){
+    node * temp = head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+int main(){
+  head = NULL;
+  insert(4,1);
+  insert(8,2);
+  insert(4,2);
+  insert(9,2);
+  insert(18,1);
+  print();
+}
+
