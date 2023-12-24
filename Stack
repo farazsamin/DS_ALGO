@@ -1,0 +1,137 @@
+//***************************************************************************************************************************************************
+//Stack Using Array 
+
+#include<iostream>
+using namespace std;
+
+//Stack implementation using Array
+
+int top=-1;
+void push(int arr[],int x,int n){
+    if(top==n-1){
+        cout<<"Stack is Full"<<endl;
+        return;
+    }
+    top++;
+    arr[top]= x;
+}
+
+void pop(){
+    if(top==-1){
+        cout<<"Stack is already empty"<<endl;
+        return;
+    }
+    top--;
+}
+
+void print(int arr[]){
+    for(int i=0;i<=top;i++)
+        cout<<arr[i]<<" ";
+    cout<<endl;
+}
+int main(){
+   cout<<"How many Numbers You want in your Stack? "<<endl;
+   int n;
+   cin>>n;
+   int arr[n];
+   push(arr,2,n);  print(arr);
+   push(arr,5,n);  print(arr);
+   push(arr,9,n);  print(arr);
+   pop();          print(arr);
+   pop();          print(arr);
+   pop();          print(arr);
+
+
+}
+
+
+//***************************************************************************************************************************************************
+//Stack Using Linked List 
+
+#include<iostream>
+using namespace std;
+
+//Stack implementation using Stack
+
+struct node{
+    int data;
+    node* next;
+};
+node * top = NULL;
+
+//Push at the beginning of Linked list
+void Push(int x){
+        node* temp = new node;
+        temp->data = x;
+        temp->next = top;
+        top= temp;
+}
+//Pop from the beginning 
+void Pop(){
+        if(top==NULL) return;
+        node* temp;
+        temp= top;
+        top= top->next;
+        free(temp);
+}
+void Print(){
+        node * temp;
+        temp= top;
+        while(temp!=NULL){
+            cout<<temp->data<<" ";
+            temp= temp->next;
+        }
+        cout<<endl;
+}
+int main(){
+        Push(2); Print();
+        Push(4); Print();
+        Push(8); Print();
+        Pop(); Print();
+
+
+}
+
+
+//***************************************************************************************************************************************************
+//Reverse String using Stack 
+
+#include<iostream>
+#include<stack>
+#include<cstring>
+using namespace std;
+//Reverse String using stack
+
+void Reverse(char s[],int n){
+    stack<char>str;
+    //Pushing into stack
+    for(int i=0;i<n;i++){
+        str.push(s[i]);
+    }
+    //Reverse String
+    for(int i=0;i<n;i++){
+        s[i]=str.top();
+        str.pop();
+    }
+
+}
+int main(){
+    char s[100];
+    cout<<"Enter your words: " <<endl;
+    gets(s);
+    Reverse(s,strlen(s));
+    cout<<s<<endl;
+
+}
+
+
+//***************************************************************************************************************************************************
+
+
+
+
+//***************************************************************************************************************************************************
+
+
+
+//***************************************************************************************************************************************************
